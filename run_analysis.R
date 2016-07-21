@@ -11,23 +11,24 @@ library(reshape2)
 ##
 ## The raw data file will download to a sub-directory called "data" in the working directory 
 ## and unzipped. The actual data files will be in sub-directory "UCI HAR Dataset"
-## Comment out the next four lines if the data set is already in the working directory.
-if(!file.exists("./data")) {dir.create("./data")}
-fileUrl <- "https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip"
-download.file(fileUrl,destfile="./data/Dataset.zip",method="curl")
-unzip(zipfile="./data/Dataset.zip",exdir="./data")
+## Un-comment and run the next four lines if the data set is NOT already in the working directory.
+## if(!file.exists("./data")) {dir.create("./data")}
+## fileUrl <- "https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip"
+## download.file(fileUrl,destfile="./data/Dataset.zip",method="curl")
+## unzip(zipfile="./data/Dataset.zip",exdir="./data")
 
 ## Read the data into R
 ##
-## 8 files will be read in from the sub-directory "./data/UCI HAR Dataset"
-subjecttest <- read.table('./data/UCI HAR Dataset/test/subject_test.txt')
-xtest <- read.table('./data/UCI HAR Dataset/test/X_test.txt')
-ytest <- read.table('./data/UCI HAR Dataset/test/y_test.txt')
-subjecttrain <- read.table('./data/UCI HAR Dataset/train/subject_train.txt')
-xtrain <- read.table('./data/UCI HAR Dataset/train/X_train.txt')
-ytrain <- read.table('./data/UCI HAR Dataset/train/y_train.txt')
-features <- read.table('./data/UCI HAR Dataset/features.txt', stringsAsFactors = FALSE)
-activities <- read.table('./data/UCI HAR Dataset/activity_labels.txt')
+## 8 files will be read in from the sub-directory "./UCI HAR Dataset"
+## This assumes the Sansung data file is already in the working directory
+subjecttest <- read.table('./UCI HAR Dataset/test/subject_test.txt')
+xtest <- read.table('./UCI HAR Dataset/test/X_test.txt')
+ytest <- read.table('./UCI HAR Dataset/test/y_test.txt')
+subjecttrain <- read.table('./UCI HAR Dataset/train/subject_train.txt')
+xtrain <- read.table('./UCI HAR Dataset/train/X_train.txt')
+ytrain <- read.table('./UCI HAR Dataset/train/y_train.txt')
+features <- read.table('./UCI HAR Dataset/features.txt', stringsAsFactors = FALSE)
+activities <- read.table('./UCI HAR Dataset/activity_labels.txt')
 ##
 ##
 ## Step 1: Merge the training and the test sets to create one data set
@@ -103,7 +104,7 @@ mergeddata2 <- summarise_each(mergeddata2, funs(mean))
 write.table(mergeddata2, file = "tidydataset.txt",row.name=FALSE)
 ##
 ## The following code should allow a reader to read in this tidy date set and view 
-## the data in RStudio; this assumes tidydataset.txt is in the working directory:
+## the data; this assumes tidydataset.txt is in the working directory:
 ## data <- read.table('./tidydataset.txt', header = TRUE)
 ## View(data)
 ##
