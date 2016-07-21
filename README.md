@@ -1,4 +1,4 @@
-### Coursera Getting and Cleaning Date course project file repository
+### Coursera Getting and Cleaning Data course project file repository
 
 This repository contains the following files in completion of the Getting and Cleaning Data final project. The required files are: 
 
